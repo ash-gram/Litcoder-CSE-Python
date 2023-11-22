@@ -8,6 +8,7 @@ Step - 1:
 
 https://www.cpureport.com/enable-copypaste-option-firefox/
 
+
 Step- 2:
 
 https://superuser.com/a/1305827

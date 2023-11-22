@@ -1,7 +1,14 @@
 # LitCoder
+Solutions to all the LitCoder problems in Python for CS Students.
 
-Solutions to problems till Module 4 in Python3.
 
-## Testcases
+# Enabling copy/paste functionality on FireFox
 
-Install CPH Judge Extension on VS Code.
+##Step - 1:
+https://www.cpureport.com/enable-copypaste-option-firefox/
+
+##Step- 2:
+https://superuser.com/a/1305827
+Unchek "Use Default", 
+Select "Block"
+

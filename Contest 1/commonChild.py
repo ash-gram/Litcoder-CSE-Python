@@ -1,17 +1,45 @@
-def longest_common_child(s1, s2):
-    dp = [[0] * (len(s2) + 1) for _ in range(len(s1) + 1)]
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
 
-    for i in range(1, len(s1) + 1):
-        for j in range(1, len(s2) + 1):
-            if s1[i - 1] == s2[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-            else:
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
 
-    return dp[len(s1)][len(s2)]
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+
+        if root_x != root_y:
+            if self.rank[root_x] < self.rank[root_y]:
+                root_x, root_y = root_y, root_x
+            self.parent[root_y] = root_x
+            if self.rank[root_x] == self.rank[root_y]:
+                self.rank[root_x] += 1
+
+def min_operations_to_connect_cities(N, routes):
+    uf = UnionFind(N)
+
+    for route in routes:
+        city1, city2 = route
+        uf.union(city1, city2)
+
+    # Count the number of disjoint sets
+    disjoint_sets = len(set(uf.find(city) for city in range(N)))
+
+    # The minimum number of operations is equal to the number of disjoint sets minus 1
+    return disjoint_sets - 1 if disjoint_sets > 1 else 0
 
 # Example usage:
-s1 = input()
-s2 = input()
-result = longest_common_child(s1, s2)
+N = int(input())
+route_len = int(input())
+routes = []
+for i in range(route_len):
+    inp = input()
+    inp = map(int , inp.split())
+    routes.append(inp)
+
+result = min_operations_to_connect_cities(N, routes)
 print(result)

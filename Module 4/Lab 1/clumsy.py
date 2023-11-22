@@ -1,19 +1,17 @@
-def clumsy( n):
-    if n == 1:
-        return 1
-    elif n == 2:
-        return 2
-    elif n == 3:
-        return 6
-    elif n == 4:
-        return 7
-    else:
-        if n % 4 == 0:
-            return n + 1
-        elif n % 4 <= 2:
-            return n + 2
-        else:
-            return n - 1
-    
-n = int(input())
-print(clumsy(n))
+def clumsy(n):
+    op = 0
+    num = n
+    for i in range(n-1, 0, -1):
+        if op == 0:
+            num *= i
+        elif op == 1:
+            num //= i
+        elif op == 2:
+            num += i
+        elif op == 3:
+            num -= i
+        op = (op + 1) % 4
+    return num
+
+inp = int(input())
+print(clumsy(inp))
